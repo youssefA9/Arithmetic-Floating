@@ -13,7 +13,6 @@ public class BinaryArithmetic {
 
         text = sc.nextLine();
         Char = insertion(Char, text);
-        hghghghg
         // for (int i = 0; i < Char.size(); i++) {
         // System.out.println("Enter the Probability of Character (" + Char.get(i) + ") : ");
         //  Charp.add(sc.nextDouble());
