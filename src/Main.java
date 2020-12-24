@@ -6,6 +6,7 @@ public class Main {
     public static void main(String args[]) {
         String text = "";
         double floatingCode = 0.0;
+        int length = 0;
         Vector<String> Char = new Vector<String>();
         Vector<Double> Charp = new Vector<Double>();
         Scanner sc = new Scanner(System.in);
@@ -21,8 +22,12 @@ public class Main {
         floatingCode = Arithmetic_floatingEncoder(text, Char, Charp);
 
         System.out.println("The Floating Code: " + floatingCode);
+        System.out.println();
 
-        text = Arithmetic_floatingDecoder(floatingCode, 4, Char, Charp);
+        System.out.println("Enter the length of the text : ");
+        length = sc.nextInt();
+
+        text = Arithmetic_floatingDecoder(floatingCode, length, Char, Charp);
 
         System.out.println("The Decompressed Test: " + text);
 
