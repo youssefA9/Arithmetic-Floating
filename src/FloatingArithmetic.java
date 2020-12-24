@@ -168,16 +168,21 @@ public class FloatingArithmetic {
     }
 
     public static void createCompFile(Vector<String> Char, Vector<Double> Charp, long length, double code, String Path) {
-        Path = preparePath(Path) + "CompressedFile\\";
+        Path = preparePath(Path) + "CompressedFile.txt";
         try {
             FileWriter file = new FileWriter(Path);
             for (int i = 0; i < Char.size(); i++) {
                 file.write(Char.get(i) + " " + Charp.get(i) + "\n");
             }
+            file.write(length + "\n");
+            file.write(code + "");
+            file.close();
+
         } catch (Exception e) {
         }
-
     }
+
+    public static void readCompFile
 
     public static String preparePath(String Path) {
         String[] temp = Path.split(Pattern.quote("\\"));

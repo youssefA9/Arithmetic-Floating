@@ -78,7 +78,10 @@ public class BinaryArithmetic {
         double number = (Math.random() * (upper - lower)) + lower;
         while ((int) (number * 10) % 2 != 1) {
             number = (Math.random() * (upper - lower)) + lower;
+
         }
+        System.out.println("bitch");
+        System.out.println(number);
 
         String result = tobinary(number, getK(CharPerc));
         return output + result;
