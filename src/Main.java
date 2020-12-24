@@ -71,7 +71,7 @@ public class Main {
         double range = 1.0;
         double upper = 0.0, lower = 0.0;
         double temp = 0.0;
-        double floatTemp = 0.0;
+        double floatTemp = floatCode;
         int j = 0;
 
         do {
@@ -85,7 +85,7 @@ public class Main {
 
             if (j == 0) {
                 upper = vectorDoubSum(CharPerc, Char.indexOf(text.substring(text.length() - 1)));
-                lower = 0.0;
+                lower = vectorDoubSum(CharPerc, Char.indexOf(text.substring(text.length() - 1)) - 1);
             } else {
                 temp = upper;
 
