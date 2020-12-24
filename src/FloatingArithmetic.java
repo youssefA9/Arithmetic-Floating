@@ -8,37 +8,75 @@ import java.util.regex.Pattern;
 
 public class FloatingArithmetic {
     public static void main(String args[]) {
-        String text = "";
-        double floatingCode = 0.0;
-        long length = 0;
-        String Path = "";
-        File fx;
-        Vector<String> Char = new Vector<String>();
-        Vector<Double> Charp = new Vector<Double>();
-        Scanner sc = new Scanner(System.in);
+        try {
+            String text = "";
+            double floatingCode = 0.0;
+            long length = 0;
+            String Path = "";
+            File fx;
+            Vector<String> Char = new Vector<String>();
+            Vector<Double> Charp = new Vector<Double>();
+            Scanner sc = new Scanner(System.in);
+            String[] temps;
 
-        System.out.print("Enter the Path: ");
-        Path = sc.nextLine();
+            System.out.print("Enter the Path: ");
+            Path = sc.nextLine();
 
-        fx = new File(Path);
-        Char = insertion(Char, fx);
+            fx = new File(Path);
+            Char = insertion(Char, fx);
 
-        fx = new File(Path);
-        Charp = calcProb(Char, fx);
+            fx = new File(Path);
+            Charp = calcProb(Char, fx);
 
-        fx = new File(Path);
-        floatingCode = Arithmetic_floatingEncoder(fx, Char, Charp);
+            fx = new File(Path);
+            floatingCode = Arithmetic_floatingEncoder(fx, Char, Charp);
 
-        System.out.println("The Floating Code: " + floatingCode);
-        System.out.println();
+            length = fx.length();
 
-        length = fx.length();
+            createCompFile(Char, Charp, length, floatingCode, Path);
+            System.out.println("Compressed File has been created.");
 
-        createCompFile(Char, Charp, length, floatingCode, Path);
+            Thread.sleep(2000);
 
-        text = Arithmetic_floatingDecoder(floatingCode, length, Char, Charp);
+            fx = new File(preparePath(Path) + "CompressedFile.txt");
 
-        System.out.println("The Decompressed Test: " + text);
+            //ReInitialization
+            sc = new Scanner(fx);
+            Char.clear();
+            Charp.clear();
+            length = 0;
+            floatingCode = 0.0;
+            text = "";
+
+            while (sc.hasNextLine()) {
+                text = sc.nextLine();
+                temps = text.split(" ");
+                if (temps.length == 1) {
+                    break;
+                } else {
+                    Char.add(text.substring(0, 1));
+                    Charp.add(Double.valueOf(text.substring(1, text.length())));
+                }
+            }
+
+            length = Long.valueOf(text);
+            floatingCode = sc.nextDouble();
+
+
+            text = Arithmetic_floatingDecoder(floatingCode, length, Char, Charp);
+
+
+            FileWriter fw = new FileWriter(preparePath(Path) + "DecompressedFile.txt");
+
+
+            fw.write(text);
+            System.out.println("Decompressed File has been created.");
+            fw.close();
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
     }
 
@@ -58,6 +96,7 @@ public class FloatingArithmetic {
             }
             Collections.sort(Char);
         } catch (Exception e) {
+            System.out.println("File with this Path not Found");
         }
         return Char;
     }
@@ -79,7 +118,6 @@ public class FloatingArithmetic {
             while (sc.hasNextLine()) {
                 temp = sc.nextLine();
                 for (int i = 0; i < temp.length(); i++) {
-                    // D:\Collage\text.txt
 
                     Counter = Charp.get(Char.indexOf(String.valueOf(temp.charAt(i))));
                     Counter++;
@@ -94,7 +132,7 @@ public class FloatingArithmetic {
             }
 
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("File with this Path not Found");
         }
         return Charp;
     }
@@ -125,7 +163,7 @@ public class FloatingArithmetic {
             }
 
         } catch (Exception e) {
-            System.out.println("bitch here");
+            System.out.println("File with this Path not Found");
         }
 
         return (Math.random() * (upper - lower)) + lower;
@@ -161,7 +199,6 @@ public class FloatingArithmetic {
             range = upper - lower;
             floatTemp = (floatCode - lower) / range;
             j++;
-
         } while (j != EOF);
 
         return text;
@@ -179,10 +216,9 @@ public class FloatingArithmetic {
             file.close();
 
         } catch (Exception e) {
+            System.out.println("File with this Path not Found");
         }
     }
-
-    public static void readCompFile
 
     public static String preparePath(String Path) {
         String[] temp = Path.split(Pattern.quote("\\"));
@@ -192,6 +228,5 @@ public class FloatingArithmetic {
         }
         return Path;
     }
-
 
 }
