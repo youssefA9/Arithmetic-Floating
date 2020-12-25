@@ -12,6 +12,7 @@ public class BinaryArithmetic {
         Scanner sc = new Scanner(System.in);
 
         text = sc.nextLine();
+        System.out.println(text.length());
         Char = insertion(Char, text);
         // for (int i = 0; i < Char.size(); i++) {
         // System.out.println("Enter the Probability of Character (" + Char.get(i) + ") : ");
@@ -22,21 +23,21 @@ public class BinaryArithmetic {
         Charp.add(0.18);
 
         System.out.println(tobinary(0.4, 6));
-        String m = Arithmetic_binaryEncoder(text, Char, Charp);
+        //String m = Arithmetic_binaryEncoder(text, Char, Charp);
 
         floatingCode = Arithmetic_floatingEncoder(text, Char, Charp);
 
         System.out.println("The Floating Code: " + floatingCode);
-        System.out.println("The binary Code: " + m);
+        // System.out.println("The binary Code: " + m);
 
         System.out.println("Enter the length of the text : ");
         length = sc.nextInt();
 
         text = Arithmetic_floatingDecoder(floatingCode, length, Char, Charp);
-        String text2 = Arithmetic_binaryDecoder(m, length, Char, Charp);
+        // String text2 = Arithmetic_binaryDecoder(m, length, Char, Charp);
 
         System.out.println("The Decompressed Text: " + text);
-        System.out.println("The Decompressed Text: " + text2);
+        //System.out.println("The Decompressed Text: " + text2);
 
     }
 
@@ -51,7 +52,7 @@ public class BinaryArithmetic {
         return Char;
     }
 
-    public static String Arithmetic_binaryEncoder(String text, Vector<String> Char, Vector<Double> CharPerc) {
+    /*public static String Arithmetic_binaryEncoder(String text, Vector<String> Char, Vector<Double> CharPerc) {
         double range = 1.0;
         double upper = 0.0, lower = 0.0;
         int i = 0;
@@ -84,7 +85,7 @@ public class BinaryArithmetic {
 
         String result = tobinary(number, getK(CharPerc));
         return output + result;
-    }
+    }*/
 
     public static int getK(Vector<Double> m) {
         double min = m.get(0);

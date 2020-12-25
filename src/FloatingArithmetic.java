@@ -28,6 +28,10 @@ public class FloatingArithmetic {
             fx = new File(Path);
             Charp = calcProb(Char, fx);
 
+            System.out.println(Char);
+            System.out.println(Charp);
+            System.out.println(vectorDoubSum(Charp, Charp.size() - 1));
+
             fx = new File(Path);
             floatingCode = Arithmetic_floatingEncoder(fx, Char, Charp);
 
@@ -44,8 +48,6 @@ public class FloatingArithmetic {
             sc = new Scanner(fx);
             Char.clear();
             Charp.clear();
-            length = 0;
-            floatingCode = 0.0;
             text = "";
 
             while (sc.hasNextLine()) {
@@ -146,6 +148,7 @@ public class FloatingArithmetic {
     }
 
     public static double Arithmetic_floatingEncoder(File fx, Vector<String> Char, Vector<Double> CharPerc) {
+        System.out.println("Encoding");
         double range = 1.0;
         double upper = 0.0, lower = 0.0;
         int i = 0;
@@ -159,6 +162,9 @@ public class FloatingArithmetic {
                     lower = lower + range * vectorDoubSum(CharPerc, Char.indexOf(String.valueOf(text.charAt(i))) - 1);
                     range = upper - lower;
                     i++;
+                    System.out.println("lower= " + lower);
+                    System.out.println("upper= " + upper);
+                    System.out.println("---------------------------------");
                 } while (i < text.length());
             }
 
